@@ -1,5 +1,11 @@
+import {useProducts} from "../context/ProductsContext";
+
+
 
 function ProductsPage() {
+
+ const products = useProducts();
+ console.log(products);
   return (
     <div>
       <p>products</p>
@@ -7,4 +13,4 @@ function ProductsPage() {
   )
 }
 
-export default ProductsPage
+export default ProductsPage;
