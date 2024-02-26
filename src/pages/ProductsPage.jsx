@@ -7,13 +7,20 @@ import Loader from "../components/Loader";
 import {useProducts} from "../context/ProductsContext";
 
 import styles from "./ProductsPage.module.css";
+import { useEffect } from "react";
 
 
 function ProductsPage() {
 
  const products = useProducts();
 
+ const [displayed , setDisplayed] = useState([])
+
  const [search , setSearch] = useState("");
+
+ useEffect (() => {
+  setDisplayed(products);
+ }, [products]);
 
  const searchHandler = () => {
 
@@ -42,8 +49,8 @@ function ProductsPage() {
    </div>
     <div className={styles.container}>
      <div className={styles.products}>
-      {!products.length && <Loader />}
-      {products.map((p) =>(
+      {!displayed.length && <Loader />}
+      {displayed.map((p) =>(
        <Card key={p.id} data={p}/>
       ))}
      </div>
