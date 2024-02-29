@@ -4,29 +4,30 @@ import {FaListUl} from "react-icons/fa";
 
 import Card from "../components/Card";
 import Loader from "../components/Loader";
+
 import {useProducts} from "../context/ProductsContext";
+import { useEffect } from "react";
+import { useSearchParams  } from "react-router-dom";
 
 import styles from "./ProductsPage.module.css";
-import { useEffect } from "react";
 
 import {filterProducts, searchProducts} from "../helper/helper";
 
 
 function ProductsPage() {
-
  const products = useProducts();
 
  const [displayed , setDisplayed] = useState([])
-
  const [search , setSearch] = useState("");
-
  const [query , setQuery] = useState({});
+ const [searchParams , setSearchParams] = useSearchParams()
 
  useEffect (() => {
   setDisplayed(products);
  }, [products]);
 
  useEffect (() =>{
+   setSearchParams(query);
    let finalProducts = searchProducts(products , query.search);
    
    finalProducts = filterProducts(finalProducts , query.category);
@@ -44,6 +45,7 @@ function ProductsPage() {
 
   if (tagName != "LI" )return;
    setQuery((query) => ({ ...query , category})); 
+   
  };
 
   return (
@@ -73,10 +75,10 @@ function ProductsPage() {
       </div>
       <ul onClick={categoryHandler}>
        <li>All</li>
-       <li>Electronies</li>
+       <li>Electronics</li>
        <li>Jewelery</li>
-       <li>Mens Clothing</li>
-       <li>Womens Clothing</li>
+       <li>Men's Clothing</li>
+       <li>Women's Clothing</li>
       </ul>
      </div>
     </div>
