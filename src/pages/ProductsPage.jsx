@@ -44,7 +44,7 @@ function ProductsPage() {
   const category =event.target.innerText.toLowerCase();
 
   if (tagName != "LI" )return;
-   setQuery((query) => createQueryObject(query , category)); 
+   setQuery((query) => createQueryObject(query , {category})); 
    
  };
 

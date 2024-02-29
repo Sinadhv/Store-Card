@@ -25,6 +25,6 @@ const createQueryObject = (currentQuery , newQuery) => {
   return rest;
  }
  return {...currentQuery,...newQuery,};
-}
+};
 
 export {shortenText , searchProducts , filterProducts , createQueryObject};
