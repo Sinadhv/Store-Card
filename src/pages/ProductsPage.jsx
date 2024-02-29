@@ -11,7 +11,7 @@ import { useSearchParams  } from "react-router-dom";
 
 import styles from "./ProductsPage.module.css";
 
-import {filterProducts, searchProducts} from "../helper/helper";
+import {filterProducts, searchProducts , createQueryObject} from "../helper/helper";
 
 
 function ProductsPage() {
@@ -36,7 +36,7 @@ function ProductsPage() {
  } , [query]);
 
  const searchHandler = () => {
-   setQuery((query) => ({ ...query , search}));
+   setQuery((query) => createQueryObject(query , {search}));
  };
 
  const categoryHandler = (event) => {
@@ -44,7 +44,7 @@ function ProductsPage() {
   const category =event.target.innerText.toLowerCase();
 
   if (tagName != "LI" )return;
-   setQuery((query) => ({ ...query , category})); 
+   setQuery((query) => createQueryObject(query , category)); 
    
  };
 
