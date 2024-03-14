@@ -11,7 +11,7 @@ import { useSearchParams  } from "react-router-dom";
 
 import styles from "./ProductsPage.module.css";
 
-import {filterProducts, searchProducts , createQueryObject} from "../helper/helper";
+import {filterProducts, searchProducts , createQueryObject , getInitialQuery} from "../helper/helper";
 
 
 function ProductsPage() {
@@ -24,10 +24,12 @@ function ProductsPage() {
 
  useEffect (() => {
   setDisplayed(products);
+  setQuery(getInitialQuery(searchParams));
  }, [products]);
 
  useEffect (() =>{
    setSearchParams(query);
+   setSearch(query.search || "");
    let finalProducts = searchProducts(products , query.search);
    
    finalProducts = filterProducts(finalProducts , query.category);
