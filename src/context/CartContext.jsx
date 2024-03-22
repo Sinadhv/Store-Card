@@ -25,11 +25,13 @@ switch (action.type) {
     };
 
     case "REMOVE_ITEM" :
-      const newSelectedItems = state.selecetedItems.filter(item => item.id !== action.payload.id);
+      const newSelectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id
+        );
 
       return {
         ...state ,
-        selecetedItems : [...newSelectedItems],
+        selectedItems : [...newSelectedItems],
         ...sumProducts(newSelectedItems),
       };
 
@@ -45,7 +47,7 @@ switch (action.type) {
 
         case "DECREASE":
           const decreaseIndex = state.selectedItems.findIndex((item) => item.id == action.payload.id);
-          state.selectedItems[decreaseIndex],quantity--;
+          state.selectedItems[decreaseIndex].quantity--;
 
           return {
             ...state ,
